@@ -1,0 +1,107 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.5
+-- Dumped by pg_dump version 10.1
+
+-- Started on 2019-01-17 11:20:37
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET search_path = agro_data, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 210 (class 1259 OID 24783)
+-- Name: locationtest; Type: TABLE; Schema: agro_data; Owner: postgres
+--
+
+CREATE TABLE locationtest (
+    id smallint NOT NULL,
+    name character varying(150) NOT NULL,
+    poly_id character varying,
+    coordinates json NOT NULL
+);
+
+
+ALTER TABLE locationtest OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 24781)
+-- Name: locationtest_id_seq; Type: SEQUENCE; Schema: agro_data; Owner: postgres
+--
+
+CREATE SEQUENCE locationtest_id_seq
+    AS smallint
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE locationtest_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2841 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: locationtest_id_seq; Type: SEQUENCE OWNED BY; Schema: agro_data; Owner: postgres
+--
+
+ALTER SEQUENCE locationtest_id_seq OWNED BY locationtest.id;
+
+
+--
+-- TOC entry 2711 (class 2604 OID 24786)
+-- Name: locationtest id; Type: DEFAULT; Schema: agro_data; Owner: postgres
+--
+
+ALTER TABLE ONLY locationtest ALTER COLUMN id SET DEFAULT nextval('locationtest_id_seq'::regclass);
+
+
+--
+-- TOC entry 2836 (class 0 OID 24783)
+-- Dependencies: 210
+-- Data for Name: locationtest; Type: TABLE DATA; Schema: agro_data; Owner: postgres
+--
+
+COPY locationtest (id, name, poly_id, coordinates) FROM stdin;
+19	Dataverse	5c1784278284ac0009d5ab37	[[[23.77857, 38.01743], [23.7933, 38.01523], [23.79089, 38.00821], [23.77626, 38.00874], [23.77857, 38.01743]]]
+\.
+
+
+--
+-- TOC entry 2842 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: locationtest_id_seq; Type: SEQUENCE SET; Schema: agro_data; Owner: postgres
+--
+
+SELECT pg_catalog.setval('locationtest_id_seq', 19, true);
+
+
+--
+-- TOC entry 2713 (class 2606 OID 24791)
+-- Name: locationtest locationtest_pkey; Type: CONSTRAINT; Schema: agro_data; Owner: postgres
+--
+
+ALTER TABLE ONLY locationtest
+    ADD CONSTRAINT locationtest_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2019-01-17 11:20:37
+
+--
+-- PostgreSQL database dump complete
+--
+
